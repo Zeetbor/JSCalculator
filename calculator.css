@@ -11,6 +11,9 @@ header {
   height: 100px;
   margin-bottom: 35px;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
 }
 
 body {
@@ -40,7 +43,7 @@ body {
 */
 
 .input {
-  width: 500px;
+  width: 480px;
   height: 50px;
   background-color: lightgrey;
   border-radius: 5px 5px 0px 0px;
@@ -50,20 +53,22 @@ body {
   display: flex;
   justify-content: right;
   align-items: center;
+  padding: 0px 10px;
 }
 
 .output {
-  width: 500px;
+  width: 480px;
   height: 50px;
   background-color: lightgrey;
   margin-bottom: 25px;
   border-radius: 0px 0px 5px 5px;
   border: solid black 3px;
   border-top: none;
-  font-size: 30px;
+  font-size: 40px;
   display: flex;
   justify-content: right;
   align-items: center;
+  padding: 0px 10px;
 }
 
 button {

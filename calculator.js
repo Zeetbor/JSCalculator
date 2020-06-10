@@ -12,12 +12,22 @@ display = (num) => {
   return input_div.innerHTML = scrn;
 }
 
+  /*
+  if (isNaN(scrn[scrn.length -1] && isNaN(num)) {
+    scrn = scrn.substring(0, scrn.length-1);
+    scrn += (num);
+    return input_div.innerHTML = scrn;
+  } else {
+  */
+
+
 clear = () => {
   input = '';
+  operator = '';
   memory = '';
   output = '';
   scrn = '';
-  input_div.innerHTML = '';
+  input_div.innerHTML = 0;
   output_div.innerHTML = '';
 }
 
@@ -95,7 +105,6 @@ zero.addEventListener('click', () => {
 });
 
 
-
 // OPERATION BUTTONS ----------------------------------
 
 const divide_button = document.getElementById("divide");
@@ -118,22 +127,98 @@ const subtract_button = document.getElementById("subtract");
 subtract_button.addEventListener('click', () => {
   display("-");
   operator = "-";
+
   memory = input;
   input = '';
 });
 
+
+//If operator and memory are not empty - operate using values,
+//save output to memory, empty input and display results on screen.
+
+//If operator & memory not empty - check if output is empty...
+    //If output empty - save input to memory and empty input, display scrn
+    //If output full - display on screen and empty input
+
 const add_button = document.getElementById("add");
 add_button.addEventListener('click', () => {
-  display("+");
+  if (memory !== "" && operator !== "") {
+    output = operate(memory, operator, input);
+    memory = output;
+    input = "";
+    scrn = output;
+    display("+");
+    return output_div.innerHTML = output;
+  } else if (output == ""){
+      memory = input;
+      input = '';
+      display ("+");
+    } else {
+        scrn = output;
+        input = '';
+        display ("+");
+    }
   operator = "+";
+});
+
+
+/*
+{
   memory = input;
   input = '';
-});
+  display ("+");
+}
+*/
+
+/*
+  if (operator !== "") {
+    operate(memory, operator, input);
+  }
+*/
+
+
+
+//operator = "+";
+
+//If operator is 2 characters long, operate with first character and then
+//remove 1st. Similiar adjustment to be made to equals function but reversed.
+
+
+/*
+if (operator.length == 2) {
+  let sign = operator.charAt[0];
+  operate(memory, sign, input);
+  operator = operator.substring(1);
+}
+*/
+
+/*
+ if (operator == "") {
+   operator = "+";
+ } else {
+   operate (input, operator, memory);
+   operator = "+";
+ }
+*/
+
+/*
+  if (isNaN(scrn[scrn.length -1])) {
+    scrn = scrn.substring(0, str.length -1);
+    display("+")
+  } else {
+    display ("+");
+  }
+*/
+
+
 
 const equals_button = document.getElementById("equals");
 equals_button.addEventListener('click', () => {
   output = operate(memory, operator, input);
+  memory = output;
+  operator = "";
   return output_div.innerHTML = output;
+
   /*if (operator = "") {
     operator += "-";
     input == memory;
