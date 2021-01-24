@@ -31,7 +31,7 @@ const num_buttons = document.querySelectorAll(".number");
 num_buttons.forEach(item => item.addEventListener("click", numberPress()));
 
 function numberPress(e){
-  const digit = e.target.textContent;
+  const digit = parseInt(e.target.textContent);
   input += digit;
   input.textContent
 }
@@ -112,6 +112,27 @@ If operator & memory not empty - check if output is empty...
     If output empty - save input to memory and empty input, display scrn
     If output full - display on screen and empty input*/
 
+const delete_button = document.getElementById('delete')
+delete_button.addEventListener('click', function(){
+  if (input > 0){
+    scrn = scrn.slice(scrn.length, -input.length);
+    input = Math.floor(input / 10);
+    display(input);
+  }
+});
+
+const percent_button = document.getElementById('percent');
+percent_button.addEventListener('click', function(){
+  if (input > 0 && operator !== ""){
+    let percent = memory * (input / 100)
+    output = operate(memory, operator, percent);
+    memory = output;
+    operator = "";
+    input_div.innerHTML = "=";
+    output_div.innerHTML = output;
+  }
+});
+
 const divide_button = document.getElementById("divide");
 divide_button.addEventListener('click', () => {
   if (input == "0") {
@@ -181,10 +202,9 @@ subtract_button.addEventListener('click', () => {
   operator = "-";
 });
 
-
+//-----------------LOGIC--------------------------------------
 //If operator and memory are not empty - operate using values,
 //save output to memory, empty input and display results on screen.
-
 //If operator & memory not empty - check if output is empty...
     //If output empty - save input to memory and empty input, display scrn
     //If output full - display on screen and empty input
@@ -211,44 +231,17 @@ add_button.addEventListener('click', () => {
   operator = "+";
 });
 
-/*
-const percent_button = document.getElementById("percent");
-percent_button.addEventListener('click', () => {
-  if (memory !== null && operator !== "") {
-    output = operate(memory, operator, input);
-    memory = output;
-    scrn = output;
-    input = "";
-    operator = "%";
-    display("%");
-    return output_div.innerHTML = output;
-  } else if (output == null){
-      memory = input;
-      input = "";
-      display ("%");
-    } else {
-        scrn = output;
-        input = "";
-        display ("%");
-    }
-  operator = "%";
-});
-
-n1 / 100 * n2
-
-*/
-
 const equals_button = document.getElementById("equals");
 equals_button.addEventListener('click', () => {
   if (operator == "/" && input == "0"){
-    return output_div.innerHTML = "Error";
+    return output_div.innerHTML = "Divide By Zero Error";
   } else if (operator !== ""){
     output = operate(memory, operator, input);
     memory = output;
     operator = "";
     input_div.innerHTML = "=";
     output_div.innerHTML = output;
-    //Add flag for equals to enable repeat operations using equals button
+    //To Do - Add flag for equals to enable repeat operations using equals button
   };
 });
 

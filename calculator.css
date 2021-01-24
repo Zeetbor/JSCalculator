@@ -98,10 +98,12 @@ button:hover {
 
 .number:hover {
   background-color: rgb(169, 204, 227);
+  cursor: pointer;
 }
 
 .operator:hover {
   background-color:  rgb(215, 189, 226);
+  cursor: pointer;
 }
 
 button:active {
@@ -122,4 +124,8 @@ footer {
   background-color: mediumpurple;
   display: inline-flex;
   margin-top: 35px;
+}
+
+#equals {
+  width: 230px;
 }
